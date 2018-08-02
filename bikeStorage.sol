@@ -11,11 +11,11 @@ contract BikeStorage{
     Bike[] bikes;
     mapping(string => uint) ownerToBike;
 
-    function addBike(string _name, string _registernumber) returns(uint) {
+    function addBike(string _name, string _registernumber) payable {
+        require(msg.value >= 100);
         address owner = msg.sender;
         uint id = bikes.push(Bike(_name, _registernumber, owner));
         ownerToBike[_registernumber] = id;
-        return id;
     }
     
     function getBike(string _registernumber) returns (string, address){
