@@ -17,4 +17,9 @@ contract BikeStorage{
         ownerToBike[_registernumber] = id;
         return id;
     }
+    
+    function getBike(string _registernumber) returns (string, address){
+        uint id = ownerToBike[_registernumber];
+        return (bikes[id-1].name, bikes[id-1].owner);
+    }
 }
